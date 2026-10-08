@@ -1,0 +1,15 @@
+[Unit]
+Description=Cursor Memory — reindexar chats/planos/regras do Cursor
+Documentation=file://@REPO@/README.md
+
+[Service]
+Type=oneshot
+WorkingDirectory=@REPO@
+ExecStart=/usr/bin/flock -n /tmp/cursor-memory-extract.lock \
+  @REPO@/.venv/bin/python \
+  @REPO@/extract.py
+Nice=15
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+NoNewPrivileges=true
+PrivateTmp=true

@@ -1,0 +1,19 @@
+[Unit]
+Description=Cursor Memory — UI web em http://127.0.0.1:8777/
+Documentation=file://@REPO@/README.md
+After=network-online.target
+Wants=cursor-memory-extract.service
+
+[Service]
+Type=simple
+WorkingDirectory=@REPO@
+ExecStart=@REPO@/.venv/bin/python \
+  @REPO@/web.py --host 127.0.0.1 --port 8777
+Restart=on-failure
+RestartSec=5s
+Nice=10
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=default.target

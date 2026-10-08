@@ -1,0 +1,13 @@
+[Unit]
+Description=Cursor Memory — reindex automático (a cada 30 min)
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=30min
+AccuracySec=1min
+Persistent=true
+RandomizedDelaySec=2min
+Unit=cursor-memory-extract.service
+
+[Install]
+WantedBy=timers.target
